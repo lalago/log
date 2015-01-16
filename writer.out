@@ -1,0 +1,5 @@
+2015-01-17 02:38:02 [D]log test: I love debug log!
+2015-01-17 02:38:02 [D]log test: I love debug log!
+2015-01-17 02:38:02 [I]log test: I love info log!
+2015-01-17 02:38:02 [W]log test: I love warning log!
+2015-01-17 02:38:02 [E]log test: I love error log!
