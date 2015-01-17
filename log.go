@@ -17,9 +17,7 @@ const (
 	ERROR
 )
 
-var levels = map[string]Level{}
-
-type Logger struct {
+type logger struct {
 	writer io.Writer
 	level  Level
 	prefix string
@@ -27,13 +25,13 @@ type Logger struct {
 	mu     sync.Mutex
 }
 
-var Log = &Logger{writer: os.Stdout, level: DEBUG}
+var stdLog = &logger{writer: os.Stderr, level: DEBUG}
 
-func New(w io.Writer, l Level, p string) *Logger {
-	return &Logger{writer: w, level: l, prefix: p}
+func New(writer io.Writer, level Level, prefix string) *logger {
+	return &logger{writer: writer, level: level, prefix: prefix}
 }
 
-func (l *Logger) log(level Level, lvl string, m string, args ...interface{}) {
+func (l *logger) log(level Level, lvl string, m string, args ...interface{}) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 
@@ -51,18 +49,33 @@ func (l *Logger) log(level Level, lvl string, m string, args ...interface{}) {
 	}
 }
 
-func (l *Logger) Debug(msg string, args ...interface{}) {
+func (l *logger) Debug(msg string, args ...interface{}) {
 	l.log(DEBUG, "D", msg, args...)
 }
 
-func (l *Logger) Info(msg string, args ...interface{}) {
+func (l *logger) Info(msg string, args ...interface{}) {
 	l.log(INFO, "I", msg, args...)
 }
 
-func (l *Logger) Warning(msg string, args ...interface{}) {
+func (l *logger) Warning(msg string, args ...interface{}) {
 	l.log(WARNING, "W", msg, args...)
 }
 
-func (l *Logger) Error(msg string, args ...interface{}) {
+func (l *logger) Error(msg string, args ...interface{}) {
 	l.log(ERROR, "E", msg, args...)
+}
+
+func Debug(msg string, args ...interface{}) {
+	stdLog.Debug(msg, args...)
+}
+
+func Info(msg string, args ...interface{}) {
+	stdLog.Info(msg, args...)
+}
+func Warning(msg string, args ...interface{}) {
+	stdLog.Warning(msg, args...)
+}
+
+func Error(msg string, args ...interface{}) {
+	stdLog.Warning(msg, args...)
 }
