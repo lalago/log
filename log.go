@@ -66,16 +66,16 @@ func (l *logger) Error(msg string, args ...interface{}) {
 }
 
 func Debug(msg string, args ...interface{}) {
-	stdLog.Debug(msg, args...)
+	stdLog.log(DEBUG, "\033[1;34mD\033[1;m", msg, args...)
 }
 
 func Info(msg string, args ...interface{}) {
-	stdLog.Info(msg, args...)
+	stdLog.log(INFO, "\033[1;32mI\033[1;m", msg, args...)
 }
 func Warning(msg string, args ...interface{}) {
-	stdLog.Warning(msg, args...)
+	stdLog.log(WARNING, "\033[1;35mW\033[1;m", msg, args...)
 }
 
 func Error(msg string, args ...interface{}) {
-	stdLog.Warning(msg, args...)
+	stdLog.log(ERROR, "\033[1;31mE\033[1;m", msg, args...)
 }
