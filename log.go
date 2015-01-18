@@ -79,3 +79,8 @@ func Warning(msg string, args ...interface{}) {
 func Error(msg string, args ...interface{}) {
 	stdLog.log(ERROR, "\033[1;31mE\033[1;m", msg, args...)
 }
+
+func Fatal(msg string, args ...interface{}) {
+	Error(msg, args...)
+	os.Exit(1)
+}
