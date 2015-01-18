@@ -3,7 +3,7 @@ logging lib for golang
 
 ###Usage:
 **Features**
-- colorize Level character
+- colorizing level letter
  - Blue for Level Debug **D**
  - Green for Level Info **I**
  - Magenta for Level Warning **W**
@@ -25,7 +25,7 @@ func main() {
 	f, err := os.Create("log.out")
 	if err != nil {
 		// using default Stderr log
-		log.Error("Creating log file fails")
+		log.Fatal("Creating log file fails")
 	}
 
 	var l = log.New(f, DEBUG, "lalago")
