@@ -1,8 +1,16 @@
 # log
 logging lib for golang
 
-##Usage:
-**Directly**
+###Usage:
+**Features**
+- colorize Level character
+ - Blue for Level Debug **D**
+ - Green for Level Info **I**
+ - Magenta for Level Warning **W**
+ - Red for Level Error **E**
+ 
+
+**Examples**
 ```go
 package main
 
